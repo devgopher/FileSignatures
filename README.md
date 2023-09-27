@@ -1,5 +1,7 @@
 # FileSignatures
 
+Original is here: https://github.com/neilharvey/FileSignatures
+
 [![build status](https://ci.appveyor.com/api/projects/status/github/neilharvey/filesignatures?svg=true)](https://ci.appveyor.com/project/neilharvey/filesignatures)
 [![nuget package](https://badge.fury.io/nu/FileSignatures.svg)](https://www.nuget.org/packages/FileSignatures)
 
