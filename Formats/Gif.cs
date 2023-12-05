@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of Graphics Interchange Format (GIF) image.
+    ///     Specifies the format of Graphics Interchange Format (GIF) image.
     /// </summary>
     public class Gif : Image
     {

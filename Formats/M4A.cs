@@ -1,7 +1,7 @@
 namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Apple Lossless Audio Codec file
+    ///     Specifies the format of a Apple Lossless Audio Codec file
     /// </summary>
     public class M4A : Isobmff
     {

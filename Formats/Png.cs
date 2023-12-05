@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Portable Network Graphics (PNG) image.
+    ///     Specifies the format of a Portable Network Graphics (PNG) image.
     /// </summary>
     public class Png : Image
     {

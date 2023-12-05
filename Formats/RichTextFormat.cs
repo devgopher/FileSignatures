@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Rich Text Format (RTF) file.
+    ///     Specifies the format of a Rich Text Format (RTF) file.
     /// </summary>
     public class RichTextFormat : FileFormat
     {

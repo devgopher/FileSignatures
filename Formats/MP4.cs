@@ -1,7 +1,7 @@
 namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a MPEG-4 video
+    ///     Specifies the format of a MPEG-4 video
     /// </summary>
     public class MP4 : Isobmff
     {

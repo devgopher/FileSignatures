@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Windows executable file
+    ///     Specifies the format of a Windows executable file
     /// </summary>
     public class Executable : FileFormat
     {
