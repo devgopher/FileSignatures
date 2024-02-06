@@ -10,8 +10,10 @@ namespace FileSignatures
         /// <summary>
         /// Returns all the default file formats.
         /// </summary>
-        public static IEnumerable<FileFormat> GetFormats() =>
-            GetFormats(typeof(FileFormatLocator).GetTypeInfo().Assembly);
+        public static IEnumerable<FileFormat> GetFormats()
+        {
+            return GetFormats(typeof(FileFormatLocator).GetTypeInfo().Assembly);
+        }
 
         /// <summary>
         /// Returns all the concrete <see cref="FileFormat"/> types found in the specified assembly.
@@ -19,14 +21,17 @@ namespace FileSignatures
         /// <param name="assembly">The assembly which contains the file format definitions.</param>
         public static IEnumerable<FileFormat> GetFormats(Assembly assembly)
         {
-            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+            if(assembly == null)
+            {
+                throw new ArgumentNullException(nameof(assembly));
+            }
 
             return assembly.GetTypes()
-                .Where(t => typeof(FileFormat).IsAssignableFrom(t))
-                .Where(t => !t.GetTypeInfo().IsAbstract)
-                .Where(t => t.GetConstructors().Any(c => c.GetParameters().Length == 0))
-                .Select(t => Activator.CreateInstance(t))
-                .OfType<FileFormat>();
+                 .Where(t => typeof(FileFormat).IsAssignableFrom(t))
+                 .Where(t => !t.GetTypeInfo().IsAbstract)
+                 .Where(t => t.GetConstructors().Any(c => c.GetParameters().Length == 0))
+                 .Select(t => Activator.CreateInstance(t))
+                 .OfType<FileFormat>();
         }
 
         /// <summary>

@@ -12,8 +12,7 @@
         {
         }
 
-        protected Image(byte[] signature, string mediaType, string extension, int offset) : base(signature, mediaType,
-            extension, offset)
+        protected Image(byte[] signature, string mediaType, string extension, int offset) : base(signature, mediaType, extension, offset)
         {
         }
     }
