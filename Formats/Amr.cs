@@ -6,6 +6,8 @@
     /// </summary>
     public class Amr : FileFormat
     {
-        public Amr() : base(new byte[] { 0x23, 0x21, 0x41, 0x4D, 0x52 }, "audio/amr", "amr") { }
+        public Amr() : base(new byte[] { 0x23, 0x21, 0x41, 0x4D, 0x52 }, "audio/amr", "amr")
+        {
+        }
     }
 }

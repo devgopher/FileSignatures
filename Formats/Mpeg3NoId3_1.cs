@@ -5,6 +5,8 @@
     /// </summary>
     public class Mpeg3NoId3_1 : FileFormat
     {
-        public Mpeg3NoId3_1() : base(new byte[] { 0xFF, 0xFB }, "audio/mpeg", "mp3") { }
+        public Mpeg3NoId3_1() : base(new byte[] { 0xFF, 0xFB }, "audio/mpeg", "mp3")
+        {
+        }
     }
 }

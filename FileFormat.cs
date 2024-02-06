@@ -55,15 +55,9 @@ namespace FileSignatures
         /// <param name="offset">The offset at which the signature is located.</param>
         protected FileFormat(byte[] signature, int headerLength, string mediaType, string extension, int offset)
         {
-            if (signature == null)
-            {
-                throw new ArgumentNullException(nameof(signature));
-            }
+            if (signature == null) throw new ArgumentNullException(nameof(signature));
 
-            if (string.IsNullOrEmpty(mediaType))
-            {
-                throw new ArgumentNullException(nameof(mediaType));
-            }
+            if (string.IsNullOrEmpty(mediaType)) throw new ArgumentNullException(nameof(mediaType));
 
             Signature = new ReadOnlyCollection<byte>(signature);
             HeaderLength = headerLength;
@@ -104,20 +98,15 @@ namespace FileSignatures
         /// <param name="stream">The stream to check.</param>
         public virtual bool IsMatch(Stream stream)
         {
-            if (stream == null || (stream.Length < HeaderLength && HeaderLength < int.MaxValue) || Offset > stream.Length)
-            {
-                return false;
-            }
+            if (stream == null || (stream.Length < HeaderLength && HeaderLength < int.MaxValue) ||
+                Offset > stream.Length) return false;
 
             stream.Position = Offset;
 
-            for (int i = 0; i < Signature.Count; i++)
+            for (var i = 0; i < Signature.Count; i++)
             {
                 var b = stream.ReadByte();
-                if (b != Signature[i])
-                {
-                    return false;
-                }
+                if (b != Signature[i]) return false;
             }
 
             return true;
@@ -127,10 +116,7 @@ namespace FileSignatures
         /// Determines whether the object is equal to this FileFormat.
         /// </summary>
         /// <param name="obj">The object to compare.</param>
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as FileFormat);
-        }
+        public override bool Equals(object obj) => Equals(obj as FileFormat);
 
         /// <summary>
         /// Determines whether the format is equal to this FileFormat.
@@ -138,20 +124,11 @@ namespace FileSignatures
         /// <param name="fileFormat">The format to compare.</param>
         public bool Equals(FileFormat? fileFormat)
         {
-            if (fileFormat == null)
-            {
-                return false;
-            }
+            if (fileFormat == null) return false;
 
-            if (ReferenceEquals(this, fileFormat))
-            {
-                return true;
-            }
+            if (ReferenceEquals(this, fileFormat)) return true;
 
-            if (GetType() != fileFormat.GetType())
-            {
-                return false;
-            }
+            if (GetType() != fileFormat.GetType()) return false;
 
             return fileFormat.Signature.SequenceEqual(Signature);
         }
@@ -163,16 +140,10 @@ namespace FileSignatures
         {
             unchecked
             {
-                if (Signature == null)
-                {
-                    return 0;
-                }
+                if (Signature == null) return 0;
 
                 var hash = 17;
-                foreach (var element in Signature)
-                {
-                    hash = hash * 31 + element.GetHashCode();
-                }
+                foreach (var element in Signature) hash = hash * 31 + element.GetHashCode();
 
                 return hash;
             }
@@ -181,9 +152,6 @@ namespace FileSignatures
         /// <summary>
         /// Returns a string that represents this format.
         /// </summary>
-        public override string ToString()
-        {
-            return MediaType;
-        }
+        public override string ToString() => MediaType;
     }
 }
