@@ -6,21 +6,21 @@ using System.Linq;
 namespace FileSignatures
 {
     /// <summary>
-    /// Provides a mechanism to determine the format of a file.
+    ///     Provides a mechanism to determine the format of a file.
     /// </summary>
     public class FileFormatInspector : IFileFormatInspector
     {
         private readonly IEnumerable<FileFormat> _formats;
 
         /// <summary>
-        /// Initialises a new FileFormatInspector instance which can determine the default file formats.
+        ///     Initialises a new FileFormatInspector instance which can determine the default file formats.
         /// </summary>
         public FileFormatInspector() : this(FileFormatLocator.GetFormats())
         {
         }
 
         /// <summary>
-        /// Initialises a new FileFormatInspector instance which can determine the specified file formats.
+        ///     Initialises a new FileFormatInspector instance which can determine the specified file formats.
         /// </summary>
         /// <param name="formats">The formats which are recognised.</param>
         public FileFormatInspector(IEnumerable<FileFormat> formats)
@@ -29,7 +29,7 @@ namespace FileSignatures
         }
 
         /// <summary>
-        /// Determines the format of a file.
+        ///     Determines the format of a file.
         /// </summary>
         /// <param name="stream">A stream containing the file content.</param>
         /// <returns>An instance of a matching file format, or null if the format could not be determined.</returns>

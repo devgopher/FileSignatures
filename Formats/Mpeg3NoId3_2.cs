@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Mp3 with no Id3
+    ///     Mp3 with no Id3
     /// </summary>
     public class Mpeg3NoId3_2 : FileFormat
     {

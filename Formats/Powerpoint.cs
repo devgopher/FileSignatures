@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Powerpoint presentation.
+    ///     Specifies the format of a Powerpoint presentation.
     /// </summary>
     public class PowerPoint : OfficeOpenXml
     {

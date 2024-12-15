@@ -1,7 +1,7 @@
 namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Google WebP image file.
+    ///     Specifies the format of a Google WebP image file.
     /// </summary>
     public class Webp : Image
     {

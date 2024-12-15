@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specified the format of a Still Picture Interchange File Format (SPIFF) file.
+    ///     Specified the format of a Still Picture Interchange File Format (SPIFF) file.
     /// </summary>
     public class Spiff : Jpeg
     {

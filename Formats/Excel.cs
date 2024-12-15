@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of an Excel workbook.
+    ///     Specifies the format of an Excel workbook.
     /// </summary>
     public class Excel : OfficeOpenXml
     {

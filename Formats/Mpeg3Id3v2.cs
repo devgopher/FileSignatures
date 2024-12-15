@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a MPEG-1 Audio Layer 3 (MP3) audio file
+    ///     Specifies the format of a MPEG-1 Audio Layer 3 (MP3) audio file
     /// </summary>
     public class Mpeg3Id3v2 : FileFormat
     {

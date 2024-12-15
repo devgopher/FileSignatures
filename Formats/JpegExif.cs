@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a JPEG image containing EXIF data.
+    ///     Specifies the format of a JPEG image containing EXIF data.
     /// </summary>
     public class JpegExif : Jpeg
     {

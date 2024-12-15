@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a zip archive.
+    ///     Specifies the format of a zip archive.
     /// </summary>
     public class Zip : FileFormat
     {

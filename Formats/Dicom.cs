@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Dicom file.
+    ///     Specifies the format of a Dicom file.
     /// </summary>
     public class Dicom : FileFormat
     {

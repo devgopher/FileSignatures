@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Portable Document Format (PDF) file.
+    ///     Specifies the format of a Portable Document Format (PDF) file.
     /// </summary>
     public class Pdf : FileFormat
     {

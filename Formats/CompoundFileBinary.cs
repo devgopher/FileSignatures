@@ -1,20 +1,20 @@
-﻿using OpenMcdf;
-using System;
+﻿using System;
 using System.IO;
+using OpenMcdf;
 
 namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Compound Binary File.
+    ///     Specifies the format of a Compound Binary File.
     /// </summary>
     /// <remarks>
-    /// See [MS-CFB] https://msdn.microsoft.com/en-us/library/dd942138.aspx,
-    /// in particular 2.2 for a description of the CFB header specification.
+    ///     See [MS-CFB] https://msdn.microsoft.com/en-us/library/dd942138.aspx,
+    ///     in particular 2.2 for a description of the CFB header specification.
     /// </remarks>
     public abstract class CompoundFileBinary : FileFormat, IFileFormatReader
     {
         /// <summary>
-        /// Initializes a new instance of the CompoundFileBinary class.
+        ///     Initializes a new instance of the CompoundFileBinary class.
         /// </summary>
         /// <param name="storage">The entry in the structured storage which is used to identify the format.</param>
         /// <param name="mediaType">The media type of the format.</param>
@@ -31,16 +31,15 @@ namespace FileSignatures.Formats
         }
 
         /// <summary>
-        /// Gets the entry in the structured storage which is used to identify the format.
+        ///     Gets the entry in the structured storage which is used to identify the format.
         /// </summary>
         public string Storage { get; }
 
         public bool IsMatch(IDisposable? file)
         {
             if (file is CompoundFile cf)
-                return cf.RootStorage.TryGetStream(Storage, out var _);
-            else
-                return false;
+                return cf.RootStorage.TryGetStream(Storage, out _);
+            return false;
         }
 
         public IDisposable? Read(Stream stream)

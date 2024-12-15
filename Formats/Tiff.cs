@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Tagged Image File Format (TIFF) image.
+    ///     Specifies the format of a Tagged Image File Format (TIFF) image.
     /// </summary>
     public class Tiff : Image
     {
