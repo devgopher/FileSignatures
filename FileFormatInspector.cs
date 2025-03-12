@@ -6,21 +6,21 @@ using System.Linq;
 namespace FileSignatures
 {
     /// <summary>
-    /// Provides a mechanism to determine the format of a file.
+    ///     Provides a mechanism to determine the format of a file.
     /// </summary>
     public class FileFormatInspector : IFileFormatInspector
     {
         private readonly IEnumerable<FileFormat> _formats;
 
         /// <summary>
-        /// Initialises a new FileFormatInspector instance which can determine the default file formats.
+        ///     Initialises a new FileFormatInspector instance which can determine the default file formats.
         /// </summary>
         public FileFormatInspector() : this(FileFormatLocator.GetFormats())
         {
         }
 
         /// <summary>
-        /// Initialises a new FileFormatInspector instance which can determine the specified file formats.
+        ///     Initialises a new FileFormatInspector instance which can determine the specified file formats.
         /// </summary>
         /// <param name="formats">The formats which are recognised.</param>
         public FileFormatInspector(IEnumerable<FileFormat> formats)
@@ -29,7 +29,7 @@ namespace FileSignatures
         }
 
         /// <summary>
-        /// Determines the format of a file.
+        ///     Determines the format of a file.
         /// </summary>
         /// <param name="stream">A stream containing the file content.</param>
         /// <returns>An instance of a matching file format, or null if the format could not be determined.</returns>
@@ -53,8 +53,8 @@ namespace FileSignatures
         private List<FileFormat> FindMatchingFormats(Stream stream)
         {
             var candidates = _formats
-                .OrderBy(t => t.HeaderLength)
-                .ToList();
+                             .OrderBy(t => t.HeaderLength)
+                             .ToList();
 
             for (var i = 0; i < candidates.Count; i++)
                 if (!candidates[i].IsMatch(stream))
@@ -72,24 +72,25 @@ namespace FileSignatures
                     var file = readers[0].Read(stream);
                     foreach (var reader in readers)
                         if (!reader.IsMatch(file))
-                            candidates.Remove((FileFormat)reader);
+                            candidates.Remove((FileFormat) reader);
                 }
             }
 
             stream.Position = 0;
+
             return candidates;
         }
 
         private static void RemoveBaseFormats(List<FileFormat> candidates)
         {
             for (var i = 0; i < candidates.Count; i++)
-            for (var j = 0; j < candidates.Count; j++)
-                if (i != j && candidates[j].GetType().IsAssignableFrom(candidates[i].GetType()))
-                {
-                    candidates.RemoveAt(j);
-                    i--;
-                    j--;
-                }
+                for (var j = 0; j < candidates.Count; j++)
+                    if (i != j && candidates[j].GetType().IsAssignableFrom(candidates[i].GetType()))
+                    {
+                        candidates.RemoveAt(j);
+                        i--;
+                        j--;
+                    }
         }
     }
 }

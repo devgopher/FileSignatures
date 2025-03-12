@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of a Word document.
+    ///     Specifies the format of a Word document.
     /// </summary>
     public class Word : OfficeOpenXml
     {

@@ -1,7 +1,7 @@
 ﻿namespace FileSignatures.Formats
 {
     /// <summary>
-    /// Specifies the format of an XML Paper Specification (XPS) document.
+    ///     Specifies the format of an XML Paper Specification (XPS) document.
     /// </summary>
     public class Xps : OfficeOpenXml
     {
