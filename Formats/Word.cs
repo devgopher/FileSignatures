@@ -5,7 +5,8 @@
     /// </summary>
     public class Word : OfficeOpenXml
     {
-        public Word() : base("word/document.xml", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "docx")
+        public Word() : base("word/document.xml",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "docx")
         {
         }
     }
