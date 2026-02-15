@@ -13,13 +13,6 @@ namespace FileSignatures
         private readonly IEnumerable<FileFormat> _formats;
 
         /// <summary>
-        ///     Initialises a new FileFormatInspector instance which can determine the default file formats.
-        /// </summary>
-        public FileFormatInspector() : this(FileFormatLocator.GetFormats())
-        {
-        }
-
-        /// <summary>
         ///     Initialises a new FileFormatInspector instance which can determine the specified file formats.
         /// </summary>
         /// <param name="formats">The formats which are recognised.</param>
@@ -45,9 +38,7 @@ namespace FileSignatures
 
             if (matches.Count > 1) RemoveBaseFormats(matches);
 
-            if (matches.Count > 0) return matches.OrderByDescending(m => m.HeaderLength).First();
-
-            return null;
+            return matches.Count > 0 ? matches.OrderByDescending(m => m.HeaderLength).First() : null;
         }
 
         private List<FileFormat> FindMatchingFormats(Stream stream)
@@ -70,9 +61,8 @@ namespace FileSignatures
                 if (readers.Any())
                 {
                     var file = readers[0].Read(stream);
-                    foreach (var reader in readers)
-                        if (!reader.IsMatch(file))
-                            candidates.Remove((FileFormat) reader);
+                    foreach (var reader in readers.Where(r => r.IsMatch(file)))
+                        candidates.Remove((FileFormat)reader);
                 }
             }
 
@@ -85,7 +75,7 @@ namespace FileSignatures
         {
             for (var i = 0; i < candidates.Count; i++)
                 for (var j = 0; j < candidates.Count; j++)
-                    if (i != j && candidates[j].GetType().IsAssignableFrom(candidates[i].GetType()))
+                    if (i != j && candidates[j].GetType().IsInstanceOfType(candidates[i]))
                     {
                         candidates.RemoveAt(j);
                         i--;

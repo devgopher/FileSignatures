@@ -16,9 +16,9 @@ namespace FileSignatures
         /// <param name="signature">The header signature of the format.</param>
         /// <param name="mediaType">The media type of the format.</param>
         /// <param name="extension">The appropriate file extension for the format.</param>
-        protected FileFormat(byte[] signature, string mediaType, string extension)
+        protected FileFormat(byte[]? signature, string mediaType, string extension)
                 : this(signature,
-                       signature == null ? 0 : signature.Length,
+                       signature?.Length ?? 0,
                        mediaType,
                        extension,
                        0)
@@ -32,12 +32,12 @@ namespace FileSignatures
         /// <param name="mediaType">The media type of the format.</param>
         /// <param name="extension">The appropriate file extension for the format.</param>
         /// <param name="offset">The offset at which the signature is located.</param>
-        protected FileFormat(byte[] signature,
+        protected FileFormat(byte[]? signature,
                              string mediaType,
                              string extension,
                              int offset)
                 : this(signature,
-                       signature == null ? offset : signature.Length + offset,
+                       signature?.Length + offset ?? offset,
                        mediaType,
                        extension,
                        offset)
@@ -71,7 +71,7 @@ namespace FileSignatures
         /// <param name="mediaType">The media type of the format.</param>
         /// <param name="extension">The appropriate file extension for the format.</param>
         /// <param name="offset">The offset at which the signature is located.</param>
-        protected FileFormat(byte[] signature,
+        private FileFormat(byte[]? signature,
                              int headerLength,
                              string mediaType,
                              string extension,
@@ -91,7 +91,7 @@ namespace FileSignatures
         /// <summary>
         ///     Gets a byte signature which can be used to identify the file format.
         /// </summary>
-        public ReadOnlyCollection<byte> Signature { get; }
+        private ReadOnlyCollection<byte>? Signature { get; }
 
         /// <summary>
         ///     Gets the number of bytes required to determine the format.
@@ -126,14 +126,14 @@ namespace FileSignatures
 
             if (GetType() != fileFormat.GetType()) return false;
 
-            return fileFormat.Signature.SequenceEqual(Signature);
+            return fileFormat.Signature != null && Signature != null && fileFormat.Signature.SequenceEqual(Signature);
         }
 
         /// <summary>
         ///     Returns a value indicating whether the format matches a file header.
         /// </summary>
         /// <param name="stream">The stream to check.</param>
-        public virtual bool IsMatch(Stream stream)
+        public bool IsMatch(Stream? stream)
         {
             if (stream == null ||
                 stream.Length < HeaderLength && HeaderLength < int.MaxValue ||
@@ -142,24 +142,16 @@ namespace FileSignatures
 
             stream.Position = Offset;
 
-            for (var i = 0; i < Signature.Count; i++)
-            {
-                var b = stream.ReadByte();
-
-                if (b != Signature[i]) return false;
-            }
-
-            return true;
+            if (Signature == null) return true;
+            
+            return !(from t in Signature let b = stream.ReadByte() where b != t select t).Any();
         }
 
         /// <summary>
         ///     Determines whether the object is equal to this FileFormat.
         /// </summary>
         /// <param name="obj">The object to compare.</param>
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as FileFormat);
-        }
+        public override bool Equals(object? obj) => Equals(obj as FileFormat);
 
         /// <summary>
         ///     Serves as the default hash function.
